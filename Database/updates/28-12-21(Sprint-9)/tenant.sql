@@ -1,0 +1,44 @@
+INSERT INTO `cron_job` ( `name`, `code`, `description`, `last_processing_date`) VALUES ( 'Competition Start', 'COMPETITION_START_TODAY', 'Cron job for start competition', '2022-01-16 23:30:11');
+
+INSERT INTO `notification_template` ( `name`, `description`, `code`, `notification_type`, `subject`, `body`, `status`, `created_by`, `created_date`) VALUES ( 'Competition Started', 'Template when competition is started', 'COMPETITION_START_TODAY', 'Email', 'OneTeam360 - Competition about to start', '<!doctype html><html lang=\"en-US\"><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><link href=https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap rel=\"stylesheet\"><title>Email Template</title><meta name=\"description\" content=\"Notifications Email Template\"><style type=\"text/css\">html,body {font-family: \"Lato\", sans-serif;color: #34444c;}a:hover {text-decoration: none !important;}:focus {outline: none;border: 0;}</style></head><body marginheight=\"0\" topmargin=\"0\" marginwidth=\"0\" style=\"margin: 0px; background-color: #fff;\" bgcolor=\"#fff\"    leftmargin=\"0\"><table style=\"background-color: #fff; max-width:620px; margin:0 auto;\" width=\"100%\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\"> <tr><td style=\"max-width: 620px; width: 620px;\"><table width=\"100%\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#ffffff; text-align:left;\"><tr><td colspan=\"2\" class=\"container\" style=\"font-size: 15px; vertical-align: bottom; display: block; Margin: 0 auto; max-width: 620px; width: 620px;\"><img src=\"https://ot360prod.blob.core.windows.net/master/email-template/ot-email-template-competition-bg.png\" alt=\"\" style=\"display: block;\"></td></tr><tr><td style=\"padding:30px; background-color: #d7e4f3;\"><table width=\"100%\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\"><tr><td><h4 style=\"margin-bottom:20px; margin-top:0px; text-transform:capitalize\">Hello <strong><<first_name>> <<last_name>>,</strong></h4><p style=\"margin-bottom:20px;font-size:15px\"> Your competition <<competition_name>> starts today, check your competition dashboard for more details.</p></td></tr><tr><td><p style=\"margin-bottom: 30px;\">Please login to <strong            style=\"color:#d26934;\">OneTeam360</strong><strong>Customer Portal</strong> by clicking on the link. <a href=\"<<customer_portal_link>>\" target=\"_blank\"><<customer_portal_link>></a> to view more details.</p></td></tr></table></td></tr></table></td></tr><tr> <td style=\"vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 15px; text-align: left;\"><p style=\"margin-bottom: 5px; margin-top: 0; font-weight: bold; color: #34444c;\">Thank you,</p><p style=\"margin-bottom: 5px; margin-top: 0; font-weight: bold; color: #34444c;\"><<account_name>></p><img src=\"https://ot360prod.blob.core.windows.net/master/email-template/logo-oneteam-single-new.png\"  alt=\"\"></td></tr></table></body></html>', 'Active', '1', '2021-06-10 16:56:13');
+
+INSERT INTO `notification_template` (`name`, `description`, `code`, `notification_type`, `subject`, `body`, `status`, `created_by`, `created_date`) VALUES ( 'Competition Started', 'Template when competition is started', 'COMPETITION_START_TODAY', 'InApp', '<<competition_title>> about to start', ' Check competition dashboard for details. Good luck!', 'Active', '1', '2021-06-10 16:56:13');
+
+INSERT INTO `notification_template` ( `name`, `description`, `code`, `notification_type`, `subject`, `body`, `status`, `created_by`, `created_date`) VALUES ( 'Competition Started', 'Template when competition is started', 'COMPETITION_START_TODAY', 'Mobile', '<<competition_title>> about to start', ' Check competition dashboard for details. Good luck!', 'Active', '1', '2021-06-10 16:56:13');
+
+INSERT INTO `notification_template` ( `name`, `description`, `code`, `notification_type`, `subject`, `body`, `status`, `created_by`, `created_date`) VALUES ('Certificate Approved', 'Template when certificate is approved', 'CERTIFICATE_APPROVED', 'Mobile', 'Certificate Approved', ' Your Certificate has been approved by <<employee_name>>. Click here to view details', 'Active', '1', '2021-06-10 16:56:13');
+
+INSERT INTO `notification_template` ( `name`, `description`, `code`, `notification_type`, `subject`, `body`, `status`, `created_by`, `created_date`) VALUES ( 'Certificate Approved', 'Template when certificate is approved', 'CERTIFICATE_APPROVED', 'InApp', 'Certificate Approved', ' Your Certificate has been approved by <<employee_name>>. Click here to view details', 'Active', '1', '2021-06-10 16:56:13');
+
+INSERT INTO `notification_template` ( `name`, `description`, `code`, `notification_type`, `subject`, `body`, `status`, `created_by`, `created_date`) VALUES ( 'Certificate Rejected', 'Template when certificate is rejected', 'CERTIFICATE_REJECTED', 'Mobile', 'Certificate Rejected', ' Your Certificate has been rejected by <<employee_name>>. Click here to view details', 'Active', '1', '2021-06-10 16:56:13');
+
+INSERT INTO `notification_template` ( `name`, `description`, `code`, `notification_type`, `subject`, `body`, `status`, `created_by`, `created_date`) VALUES ( 'Certificate Rejected', 'Template when certificate is rejected', 'CERTIFICATE_REJECTED', 'InApp', 'Certificate Rejected', ' Your Certificate has been rejected by <<employee_name>>. Click here to view details', 'Active', '1', '2021-06-10 16:56:13');
+CREATE TABLE `relation` (
+  `relation_id` int(11) NOT NULL AUTO_INCREMENT,
+  `relation_name` varchar(255) NOT NULL,
+  `relation_value` varchar(255) NOT NULL,
+  PRIMARY KEY (`relation_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+/*Data for the table `relation` */
+
+insert  into `relation`(`relation_id`,`relation_name`,`relation_value`) values (1,'relative','Relative'),(2,'spouse','Spouse'),(3,'friend','Friend'),(4,'other','Other');
+
+ALTER TABLE `notification_queue_recipient` 
+ADD COLUMN `new_notification_flag` TINYINT NULL DEFAULT 1 AFTER `status`;
+
+
+INSERT INTO `notification_template` ( `name`, `description`, `code`, `notification_type`, `subject`, `body`, `status`, `created_by`, `created_date`) VALUES ( 'Add Note', 'Template when note is added', 'ADD_NOTE', 'InApp', 'New Note Added', 'A note is added by <<employee_name>> on your profile. Click here to view details!', 'Active', '1', '2021-06-10 16:56:13');
+
+INSERT INTO `notification_template` ( `name`, `description`, `code`, `notification_type`, `subject`, `body`, `status`, `created_by`, `created_date`) VALUES ( 'Task Overdue Reminder', 'Template when task is overdue, notfication will be trigger', 'TASK_OVERDUE_REMINDER', 'InApp', 'A task needs your attention!', 'Your task is getting due tomorrow! Click here to complete task.', 'Active', '1', '2021-06-10 16:56:13');
+
+INSERT INTO `notification_template` ( `name`, `description`, `code`, `notification_type`, `subject`, `body`, `status`, `created_by`, `created_date`) VALUES ( 'Certificate about to expire', 'Template when certificate about to expire', 'CRT_ABOUT_TO_EXPIRE', 'InApp', 'A certificate needs your attention!', ' Your certificate is going to expire in <<timeline>>! Click here to view it', 'Active', '1', '2021-06-10 16:56:13');
+
+INSERT INTO `notification_template` ( `name`, `description`, `code`, `notification_type`, `subject`, `body`, `status`, `created_by`, `created_date`) VALUES ( 'Employee Points Update', 'Template when employee point is updated', 'EMPLOYEE_POINTS_UPDATE', 'InApp', 'Points Updated!', 'There is a change in your points. Click here to view your latest points.', 'Active', '1', '2021-06-10 16:56:13');
+
+INSERT INTO `notification_template` ( `name`, `description`, `code`, `notification_type`, `subject`, `body`, `status`, `created_by`, `created_date`) VALUES ( 'Employee level Update', 'Template when employee level is updated', 'EMPLOYEE_LEVEL_UPDATE', 'InApp', 'One level up!', 'Your level just advanced to <<new_level>>. Click here to view your current points & new level.', 'Active', '1', '2021-06-10 16:56:13');
+
+INSERT INTO `notification_template` ( `name`, `description`, `code`, `notification_type`, `subject`, `body`, `status`, `created_by`, `created_date`) VALUES ( 'Competition Create', 'Template when competition is created', 'COMPETITION_START', 'InApp', 'New Competition Created!', 'Who will win? Click here to view details.', 'Active', '1', '2021-06-10 16:56:13');
+
+INSERT INTO `notification_template` ( `name`, `description`, `code`, `notification_type`, `subject`, `body`, `status`, `created_by`, `created_date`) VALUES ( 'Competition End', 'Template when competition is end', 'COMPETITION_END', 'InApp', 'Competition Ending Today! Hurry Up', 'It’s the last day of your competition - <<competition_name>>. Give it your best.', 'Active', '1', '2021-06-10 16:56:13');
+

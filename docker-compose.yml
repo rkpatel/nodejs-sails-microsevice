@@ -1,0 +1,63 @@
+version: "3.8"
+
+services:
+  authentication:
+    build:
+      context: "OneTeam360.Authentication"
+      dockerfile: Dockerfile
+    image: #{TOKEN_AUTHENTICATION_IMAGE}#
+  employee:
+    build:
+      context: "OneTeam360.Employee"
+      dockerfile: Dockerfile
+    image: #{TOKEN_EMPLOYEE_IMAGE}#
+  master:
+    build:
+      context: "OneTeam360.Master"
+      dockerfile: Dockerfile
+    image: #{TOKEN_MASTER_IMAGE}#
+  task:
+    build:
+      context: "OneTeam360.Task"
+      dockerfile: Dockerfile
+    image: #{TOKEN_TASK_IMAGE}#
+  notification:
+    build:
+      context: "OneTeam360.Notification"
+      dockerfile: Dockerfile
+    image: #{TOKEN_NOTIFICATION_IMAGE}#
+  training:
+    build:
+      context: "OneTeam360.Training"
+      dockerfile: Dockerfile
+    image: #{TOKEN_TRAINING_IMAGE}#
+  competition:
+    build:
+      context: "OneTeam360.Competition"
+      dockerfile: Dockerfile
+    image: #{TOKEN_COMPETITION_IMAGE}#
+  dailyreport:
+    build:
+      context: "OneTeam360.DailyReport"
+      dockerfile: Dockerfile
+    image: #{TOKEN_DAILY_REPORT_IMAGE}#
+  superadmin:
+    build:
+      context: "OneTeam360.SuperAdmin"
+      dockerfile: Dockerfile
+    image: #{TOKEN_SUPER_ADMIN_IMAGE}#
+  payment:
+    build:
+      context: "OneTeam360.Payment"
+      dockerfile: Dockerfile
+    image: #{TOKEN_PAYMENT_IMAGE}#
+  cronjob:
+    build:
+      context: "OneTeam360.Cronjobs"
+      dockerfile: Dockerfile
+    image: #{TOKEN_CRONJOB_IMAGE}#  
+  nginx:
+    build:
+      context: "OneTeam360.Nginx"
+      dockerfile: Dockerfile
+    image: #{TOKEN_NGINX_IMAGE}#

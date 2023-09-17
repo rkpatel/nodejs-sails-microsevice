@@ -1,0 +1,22 @@
+{
+  "name": "microservices",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run local",
+    "dev": "\"concurrently \"cd OneTeam360.Account && npm run dev\" \"cd OneTeam360.Authentication && npm run dev\"  \"cd OneTeam360.Employee && npm run dev\" \"cd OneTeam360.Master && npm run dev\" \"cd OneTeam360.Task && npm run dev\"",
+    "local": "\"concurrently \"cd OneTeam360.Account && npm run local\" \"cd OneTeam360.Authentication && npm run local\" \"cd OneTeam360.Employee && npm run local\" \"cd OneTeam360.Master && npm run local\" \"cd OneTeam360.Task && npm run local\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://devops.synoptek.net/OneTeam360/OneTeam360/_git/Microservices"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^6.2.0"
+  }
+}

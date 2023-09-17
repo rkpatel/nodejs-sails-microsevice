@@ -1,0 +1,489 @@
+{
+	"info": {
+		"_postman_id": "400f553b-02db-4a82-98c4-a83218a8d429",
+		"name": "OneTeam360_microservices_Server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication Service",
+			"item": [
+				{
+					"name": "Login Api",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"tomd31822@gmail.com\",\r\n    \"password\": \"Viral@123\"\r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/authentication/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"authentication",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password Api",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"jtrivedi@synoptek.com\"\r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/authentication/forgot-password",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"authentication",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password Api",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaXNMb2dnZWRJbiI6dHJ1ZSwiaWF0IjoxNjIwNjI2OTY1LCJleHAiOjE2MjA3MTMzNjV9.s3e14wEiZNyxBkTbo3XCUI_VH0aTz9mz8lDTaev9iWg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"Jaina@123\",\r\n    \"confirmpassword\": \"Jaina@123\",\r\n    \"emergency_contact_name\": \"Anjali\",\r\n    \"emergency_contact_relation\": \"Friend\",\r\n    \"emergency_contact_number\": \"9876543213\",\r\n    \"emergency_contact_address\": \"maninagar\",\r\n    \"emergency_contact_city_id\": \"1\",\r\n    \"emergency_contact_state_id\": \"1\",\r\n    \"emergency_contact_country_id\": \"1\",\r\n    \"emergency_contact_zip\": \"380008\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{base_url}}/authentication/create-password",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"authentication",
+								"create-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password Api",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJpc0xvZ2dlZEluIjp0cnVlLCJzZXNzaW9JZCI6IjA2WTJTUFZJaWgvdGs3VGJndGlPZnc9PSIsImRibmFtZSI6ImJlcnphbnNreWRhdGFiYXNlIiwiZGJJZCI6NCwiaWF0IjoxNjIzMTQ3OTYzLCJleHAiOjE2MjMyMzQzNjN9.foPZNNb0gqWEvWfq7NgICWlXr1oAuss2R4lloaHFAIE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\":\"anjali1234\"\r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/authentication/reset-password",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"authentication",
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Profile Detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/authentication/profile-detail",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"authentication",
+								"profile-detail"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Master",
+			"item": [
+				{
+					"name": "get location",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaXNMb2dnZWRJbiI6dHJ1ZSwidGVuYW50SWQiOjEyLCJpYXQiOjE2MjU4Mzg0MzIsImV4cCI6MTYyNTkyNDgzMn0.1Zr83_fxyANd5wh9NDH-xQi3lWn7z3oExX8bQN10_yY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/master/location",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"master",
+								"location"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get job type",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaXNMb2dnZWRJbiI6dHJ1ZSwidGVuYW50SWQiOjEyLCJpYXQiOjE2MjU4Mzg0MzIsImV4cCI6MTYyNTkyNDgzMn0.1Zr83_fxyANd5wh9NDH-xQi3lWn7z3oExX8bQN10_yY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/master/job-type",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"master",
+								"job-type"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get role",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaXNMb2dnZWRJbiI6dHJ1ZSwidGVuYW50SWQiOjEyLCJpYXQiOjE2MjU4Mzg0MzIsImV4cCI6MTYyNTkyNDgzMn0.1Zr83_fxyANd5wh9NDH-xQi3lWn7z3oExX8bQN10_yY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/master/role",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"master",
+								"role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "level",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaXNMb2dnZWRJbiI6dHJ1ZSwidGVuYW50SWQiOjEyLCJpYXQiOjE2MjU4Mzg0MzIsImV4cCI6MTYyNTkyNDgzMn0.1Zr83_fxyANd5wh9NDH-xQi3lWn7z3oExX8bQN10_yY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/master/level",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"master",
+								"level"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get country",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/master/country",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"master",
+								"country"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get city by state id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/master/city/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"master",
+								"city",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get state by country id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/master/state/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"master",
+								"state",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Employee Service",
+			"item": [
+				{
+					"name": "get list employee",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaXNMb2dnZWRJbiI6dHJ1ZSwidGVuYW50SWQiOjEyLCJpYXQiOjE2MjU4Mzg0MzIsImV4cCI6MTYyNTkyNDgzMn0.1Zr83_fxyANd5wh9NDH-xQi3lWn7z3oExX8bQN10_yY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/employee/?first=1&rows=10&sortField=employee_profile.created_date&sortOrder=DESC&filters=&search=",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"employee",
+								""
+							],
+							"query": [
+								{
+									"key": "first",
+									"value": "1"
+								},
+								{
+									"key": "rows",
+									"value": "10"
+								},
+								{
+									"key": "sortField",
+									"value": "employee_profile.created_date"
+								},
+								{
+									"key": "sortOrder",
+									"value": "DESC"
+								},
+								{
+									"key": "filters",
+									"value": ""
+								},
+								{
+									"key": "search",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by employee id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaXNMb2dnZWRJbiI6dHJ1ZSwidGVuYW50SWQiOjEyLCJpYXQiOjE2MjU4Mzg0MzIsImV4cCI6MTYyNTkyNDgzMn0.1Zr83_fxyANd5wh9NDH-xQi3lWn7z3oExX8bQN10_yY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/employee/35",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"employee",
+								"35"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add_employee",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaXNMb2dnZWRJbiI6dHJ1ZSwidGVuYW50SWQiOjEyLCJpYXQiOjE2MjU4MjQzNjQsImV4cCI6MTYyNTkxMDc2NH0.aSbhkNbyWb9YzlPMDku9jAEQshR4sYHa78TxcylSmN0"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \r\n        \"first_name\": \"Abhishek updated\",\r\n        \"last_name\": \"Nikam\",\r\n        \"phone\": \"9898765434\",\r\n        \"email\":\"hjk1@gmail.com\",\r\n        \"date_of_birth\": \"1999-04-15\",\r\n        \"date_of_joining\": \"1999-04-15\",\r\n        \"location_id\": [\r\n            1,\r\n            2\r\n        ],\r\n        \"job_type_id\": [\r\n            1\r\n        ],\r\n        \"profile_picture_url\": \"0b92bf2c-ffc0-4e50-a081-8997bc07e725.jpg\",\r\n        \"emergency_contact_name\": 7876788,\r\n        \"emergency_contact_relation\": \"frd\",\r\n        \"emergency_contact_number\": \"12354689\",\r\n        \"emergency_contact_address\": \"gujarat\",\r\n        \"emergency_contact_city_id\": \"\",\r\n        \"emergency_contact_state_id\": \"\",\r\n        \"emergency_contact_country_id\": \"\",\r\n        \"emergency_contact_zip\": \"423111\",\r\n        \"role_id\": 1\r\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/employee/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"employee",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit_employee",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaXNMb2dnZWRJbiI6dHJ1ZSwidGVuYW50SWQiOjEyLCJpYXQiOjE2MjU4MjQzNjQsImV4cCI6MTYyNTkxMDc2NH0.aSbhkNbyWb9YzlPMDku9jAEQshR4sYHa78TxcylSmN0"
+							},
+							{
+								"key": "tenantId",
+								"value": "5",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\" : \"Abhishek updated\", \r\n    \"last_name\" :  \"Nikam\",\r\n    \"phone\":\"9898765434\",\r\n    \"date_of_birth\" : \"1999-04-15\",\r\n    \"date_of_joining\": \"1999-04-19\",\r\n    \"location_id\":[1,2],\r\n    \"job_type_id\":[1],\r\n    \"profile_picture_url\": \"0b92bf2c-ffc0-4e50-a081-8997bc07e725.jpg\",\r\n    \"emergency_contact_name\":7876788,\r\n    \"emergency_contact_relation\":\"frd\",\r\n    \"emergency_contact_number\":\"12354689\",\r\n    \"emergency_contact_address\": \"gujarat\",\r\n    \"emergency_contact_city_id\": \"1\",\r\n    \"emergency_contact_state_id\": \"1\",\r\n    \"emergency_contact_country_id\": \"1\",\r\n    \"emergency_contact_zip\": \"423111\",\r\n    \"role_id\": 2\r\n   \r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/employee/39",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"employee",
+								"39"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "image upload",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaXNMb2dnZWRJbiI6dHJ1ZSwidGVuYW50SWQiOjEyLCJpYXQiOjE2MjU4MjQzNjQsImV4cCI6MTYyNTkxMDc2NH0.aSbhkNbyWb9YzlPMDku9jAEQshR4sYHa78TxcylSmN0"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Shiv/Downloads/bag2.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://10.19.102.5/api/v1/employee/imageUpload",
+							"protocol": "http",
+							"host": [
+								"10",
+								"19",
+								"102",
+								"5"
+							],
+							"path": [
+								"api",
+								"v1",
+								"employee",
+								"imageUpload"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

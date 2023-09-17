@@ -1,0 +1,5 @@
+module.exports = {
+  VIDEOTYPE_MAXBYTES  : 500000000,
+  FILETYPE_MAXBYTES   : 50000000,
+  UPLOADFILE_BASE_DIR : '/assets/images'
+};

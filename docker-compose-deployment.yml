@@ -1,0 +1,436 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: #{TOKEN_AUTHENTICATION_APP_NAME}#
+  labels:
+    label: #{TOKEN_AUTHENTICATION_APP_NAME}#
+spec:
+  selector:
+    matchLabels:
+      app: #{TOKEN_AUTHENTICATION_APP_NAME}#
+  template:
+    metadata:
+      labels:
+        app: #{TOKEN_AUTHENTICATION_APP_NAME}#
+    spec:
+      containers:
+        - name: #{TOKEN_AUTHENTICATION_APP_NAME}#
+          image: #{TOKEN_ACR_URL}#/#{TOKEN_AUTHENTICATION_IMAGE}#:#{TOKEN_AUTHENTICATION_TAG}#
+          imagePullPolicy: Always
+          ports:
+            - containerPort: #{TOKEN_AUTHENTICATION_PORT}#
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: #{TOKEN_AUTHENTICATION_APP_NAME}#
+  labels:
+    label: #{TOKEN_AUTHENTICATION_APP_NAME}#
+spec:
+  selector:
+    app: #{TOKEN_AUTHENTICATION_APP_NAME}#
+  ports:
+    - name: http
+      port: #{TOKEN_AUTHENTICATION_PORT}#
+      protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: #{TOKEN_EMPLOYEE_APP_NAME}#
+  labels:
+    label: #{TOKEN_EMPLOYEE_APP_NAME}#
+spec:
+  selector:
+    matchLabels:
+      app: #{TOKEN_EMPLOYEE_APP_NAME}#
+  template:
+    metadata:
+      labels:
+        app: #{TOKEN_EMPLOYEE_APP_NAME}#
+    spec:
+      containers:
+        - name: #{TOKEN_EMPLOYEE_APP_NAME}#
+          image: #{TOKEN_ACR_URL}#/#{TOKEN_EMPLOYEE_IMAGE}#:#{TOKEN_EMPLOYEE_TAG}#
+          imagePullPolicy: Always
+          ports:
+            - containerPort: #{TOKEN_EMPLOYEE_PORT}#
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: #{TOKEN_EMPLOYEE_APP_NAME}#
+  labels:
+    label: #{TOKEN_EMPLOYEE_APP_NAME}#
+spec:
+  selector:
+    app: #{TOKEN_EMPLOYEE_APP_NAME}#
+  ports:
+    - name: http
+      port: #{TOKEN_EMPLOYEE_PORT}#
+      protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: #{TOKEN_MASTER_APP_NAME}#
+  labels:
+    label: #{TOKEN_MASTER_APP_NAME}#
+spec:
+  selector:
+    matchLabels:
+      app: #{TOKEN_MASTER_APP_NAME}#
+  template:
+    metadata:
+      labels:
+        app: #{TOKEN_MASTER_APP_NAME}#
+    spec:
+      containers:
+        - name: #{TOKEN_MASTER_APP_NAME}#
+          image: #{TOKEN_ACR_URL}#/#{TOKEN_MASTER_IMAGE}#:#{TOKEN_MASTER_TAG}#
+          imagePullPolicy: Always
+          ports:
+            - containerPort: #{TOKEN_MASTER_PORT}#
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: #{TOKEN_MASTER_APP_NAME}#
+  labels:
+    label: #{TOKEN_MASTER_APP_NAME}#
+spec:
+  selector:
+    app: #{TOKEN_MASTER_APP_NAME}#
+  ports:
+    - name: http
+      port: #{TOKEN_MASTER_PORT}#
+      protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: #{TOKEN_TASK_APP_NAME}#
+  labels:
+    label: #{TOKEN_TASK_APP_NAME}#
+spec:
+  selector:
+    matchLabels:
+      app: #{TOKEN_TASK_APP_NAME}#
+  template:
+    metadata:
+      labels:
+        app: #{TOKEN_TASK_APP_NAME}#
+    spec:
+      containers:
+        - name: #{TOKEN_TASK_APP_NAME}#
+          image: #{TOKEN_ACR_URL}#/#{TOKEN_TASK_IMAGE}#:#{TOKEN_TASK_TAG}#
+          imagePullPolicy: Always
+          ports:
+            - containerPort: #{TOKEN_TASK_PORT}#
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: #{TOKEN_TASK_APP_NAME}#
+  labels:
+    label: #{TOKEN_TASK_APP_NAME}#
+spec:
+  selector:
+    app: #{TOKEN_TASK_APP_NAME}#
+  ports:
+    - name: http
+      port: #{TOKEN_TASK_PORT}#
+      protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: #{TOKEN_NOTIFICATION_APP_NAME}#
+  labels:
+    label: #{TOKEN_NOTIFICATION_APP_NAME}#
+spec:
+  selector:
+    matchLabels:
+      app: #{TOKEN_NOTIFICATION_APP_NAME}#
+  template:
+    metadata:
+      labels:
+        app: #{TOKEN_NOTIFICATION_APP_NAME}#
+    spec:
+      containers:
+        - name: #{TOKEN_NOTIFICATION_APP_NAME}#
+          image: #{TOKEN_ACR_URL}#/#{TOKEN_NOTIFICATION_IMAGE}#:#{TOKEN_NOTIFICATION_TAG}#
+          imagePullPolicy: Always
+          ports:
+            - containerPort: #{TOKEN_NOTIFICATION_PORT}#
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: #{TOKEN_NOTIFICATION_APP_NAME}#
+  labels:
+    label: #{TOKEN_NOTIFICATION_APP_NAME}#
+spec:
+  selector:
+    app: #{TOKEN_NOTIFICATION_APP_NAME}#
+  ports:
+    - name: http
+      port: #{TOKEN_NOTIFICATION_PORT}#
+      protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: #{TOKEN_TRAINING_APP_NAME}#
+  labels:
+    label: #{TOKEN_TRAINING_APP_NAME}#
+spec:
+  selector:
+    matchLabels:
+      app: #{TOKEN_TRAINING_APP_NAME}#
+  template:
+    metadata:
+      labels:
+        app: #{TOKEN_TRAINING_APP_NAME}#
+    spec:
+      containers:
+        - name: #{TOKEN_TRAINING_APP_NAME}#
+          image: #{TOKEN_ACR_URL}#/#{TOKEN_TRAINING_IMAGE}#:#{TOKEN_TRAINING_TAG}#
+          imagePullPolicy: Always
+          ports:
+            - containerPort: #{TOKEN_TRAINING_PORT}#
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: #{TOKEN_TRAINING_APP_NAME}#
+  labels:
+    label: #{TOKEN_TRAINING_APP_NAME}#
+spec:
+  selector:
+    app: #{TOKEN_TRAINING_APP_NAME}#
+  ports:
+    - name: http
+      port: #{TOKEN_TRAINING_PORT}#
+      protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: #{TOKEN_DAILY_REPORT_APP_NAME}#
+  labels:
+    label: #{TOKEN_DAILY_REPORT_APP_NAME}#
+spec:
+  selector:
+    matchLabels:
+      app: #{TOKEN_DAILY_REPORT_APP_NAME}#
+  template:
+    metadata:
+      labels:
+        app: #{TOKEN_DAILY_REPORT_APP_NAME}#
+    spec:
+      containers:
+        - name: #{TOKEN_DAILY_REPORT_APP_NAME}#
+          image: #{TOKEN_ACR_URL}#/#{TOKEN_DAILY_REPORT_IMAGE}#:#{TOKEN_DAILY_REPORT_TAG}#
+          imagePullPolicy: Always
+          ports:
+            - containerPort: #{TOKEN_DAILY_REPORT_PORT}#
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: #{TOKEN_DAILY_REPORT_APP_NAME}#
+  labels:
+    label: #{TOKEN_DAILY_REPORT_APP_NAME}#
+spec:
+  selector:
+    app: #{TOKEN_DAILY_REPORT_APP_NAME}#
+  ports:
+    - name: http
+      port: #{TOKEN_DAILY_REPORT_PORT}#
+      protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: #{TOKEN_COMPETITION_APP_NAME}#
+  labels:
+    label: #{TOKEN_COMPETITION_APP_NAME}#
+spec:
+  selector:
+    matchLabels:
+      app: #{TOKEN_COMPETITION_APP_NAME}#
+  template:
+    metadata:
+      labels:
+        app: #{TOKEN_COMPETITION_APP_NAME}#
+    spec:
+      containers:
+        - name: #{TOKEN_COMPETITION_APP_NAME}#
+          image: #{TOKEN_ACR_URL}#/#{TOKEN_COMPETITION_IMAGE}#:#{TOKEN_COMPETITION_TAG}#
+          imagePullPolicy: Always
+          ports:
+            - containerPort: #{TOKEN_COMPETITION_PORT}#
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: #{TOKEN_COMPETITION_APP_NAME}#
+  labels:
+    label: #{TOKEN_COMPETITION_APP_NAME}#
+spec:
+  selector:
+    app: #{TOKEN_COMPETITION_APP_NAME}#
+  ports:
+    - name: http
+      port: #{TOKEN_COMPETITION_PORT}#
+      protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: #{TOKEN_SUPER_ADMIN_APP_NAME}#
+  labels:
+    label: #{TOKEN_SUPER_ADMIN_APP_NAME}#
+spec:
+  selector:
+    matchLabels:
+      app: #{TOKEN_SUPER_ADMIN_APP_NAME}#
+  template:
+    metadata:
+      labels:
+        app: #{TOKEN_SUPER_ADMIN_APP_NAME}#
+    spec:
+      containers:
+        - name: #{TOKEN_SUPER_ADMIN_APP_NAME}#
+          image: #{TOKEN_ACR_URL}#/#{TOKEN_SUPER_ADMIN_IMAGE}#:#{TOKEN_SUPER_ADMIN_TAG}#
+          imagePullPolicy: Always
+          ports:
+            - containerPort: #{TOKEN_SUPER_ADMIN_PORT}#
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: #{TOKEN_SUPER_ADMIN_APP_NAME}#
+  labels:
+    label: #{TOKEN_SUPER_ADMIN_APP_NAME}#
+spec:
+  selector:
+    app: #{TOKEN_SUPER_ADMIN_APP_NAME}#
+  ports:
+    - name: http
+      port: #{TOKEN_SUPER_ADMIN_PORT}#
+      protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: #{TOKEN_PAYMENT_APP_NAME}#
+  labels:
+    label: #{TOKEN_PAYMENT_APP_NAME}#
+spec:
+  selector:
+    matchLabels:
+      app: #{TOKEN_PAYMENT_APP_NAME}#
+  template:
+    metadata:
+      labels:
+        app: #{TOKEN_PAYMENT_APP_NAME}#
+    spec:
+      containers:
+        - name: #{TOKEN_PAYMENT_APP_NAME}#
+          image: #{TOKEN_ACR_URL}#/#{TOKEN_PAYMENT_IMAGE}#:#{TOKEN_PAYMENT_TAG}#
+          imagePullPolicy: Always
+          ports:
+            - containerPort: #{TOKEN_PAYMENT_PORT}#
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: #{TOKEN_PAYMENT_APP_NAME}#
+  labels:
+    label: #{TOKEN_PAYMENT_APP_NAME}#
+spec:
+  selector:
+    app: #{TOKEN_PAYMENT_APP_NAME}#
+  ports:
+    - name: http
+      port: #{TOKEN_PAYMENT_PORT}#
+      protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: #{TOKEN_CRONJOB_APP_NAME}#
+  labels:
+    label: #{TOKEN_CRONJOB_APP_NAME}#
+spec:
+  selector:
+    matchLabels:
+      app: #{TOKEN_CRONJOB_APP_NAME}#
+  template:
+    metadata:
+      labels:
+        app: #{TOKEN_CRONJOB_APP_NAME}#
+    spec:
+      containers:
+        - name: #{TOKEN_CRONJOB_APP_NAME}#
+          image: #{TOKEN_ACR_URL}#/#{TOKEN_CRONJOB_IMAGE}#:#{TOKEN_CRONJOB_TAG}#
+          imagePullPolicy: Always
+          ports:
+            - containerPort: #{TOKEN_CRONJOB_PORT}#
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: #{TOKEN_CRONJOB_APP_NAME}#
+  labels:
+    label: #{TOKEN_CRONJOB_APP_NAME}#
+spec:
+  selector:
+    app: #{TOKEN_CRONJOB_APP_NAME}#
+  ports:
+    - name: http
+      port: #{TOKEN_CRONJOB_PORT}#
+      protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: #{TOKEN_NGINX_APP_NAME}#
+  labels:
+    label: #{TOKEN_NGINX_APP_NAME}#
+spec:
+  selector:
+    matchLabels:
+      app: #{TOKEN_NGINX_APP_NAME}#
+  template:
+    metadata:
+      labels:
+        app: #{TOKEN_NGINX_APP_NAME}#
+    spec:
+      containers:
+        - name: #{TOKEN_NGINX_APP_NAME}#
+          image: #{TOKEN_ACR_URL}#/#{TOKEN_NGINX_IMAGE}#:#{TOKEN_NGINX_TAG}#
+          imagePullPolicy: Always
+          ports:
+            - containerPort: #{TOKEN_NGINX_PORT}#
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: #{TOKEN_NGINX_APP_NAME}#
+  labels:
+    label: #{TOKEN_NGINX_APP_NAME}#
+spec:
+  selector:
+    app: #{TOKEN_NGINX_APP_NAME}#
+  ports:
+    - name: http
+      port: #{TOKEN_NGINX_PORT}#
+      protocol: TCP
+    - name: https
+      port: 443
+      protocol: TCP
+  loadBalancerIP: #{TOKEN_EXTERNAL_IP}#
+  type: LoadBalancer

@@ -1,0 +1,141 @@
+trigger:
+  - develop
+  - qa
+  - uat
+  - performance
+  - dev-ph2
+
+parameters:
+  - name: environment
+    displayName: Deployment Environment
+    type: string
+    default: default
+    values:
+      - default
+      - dev (phase2)
+      - qa (phase2)
+      - uat (phase2)
+      - performance (phase2)
+
+pool:
+  name: OneTeam360
+
+# Set variables
+variables:
+  - name: groupPrefix
+    value: "OneTeam360 Azure"
+  - name: environmentTag
+    ${{ if eq(variables['Build.SourceBranchName'], 'develop') }}:
+      value: "Dev"
+    ${{ if eq(variables['Build.SourceBranchName'], 'qa') }}:
+      value: "QA"
+    ${{ if eq(variables['Build.SourceBranchName'], 'uat') }}:
+      value: "UAT"
+    ${{ if eq(variables['Build.SourceBranchName'], 'performance')}}:
+      value: "Performance"
+    ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
+      value: "Production"
+    ${{ if and(eq(parameters.environment, 'default'),notIn(variables['Build.SourceBranchName'],'develop','qa','uat','performance','master')) }}:
+      value: "Dev - Ph2"
+    ${{ if eq(parameters.environment, 'dev (phase2)') }}:
+      value: "Dev - Ph2"
+    ${{ if eq(parameters.environment, 'qa (phase2)') }}:
+      value: "QA - Ph2"
+    ${{ if eq(parameters.environment, 'uat (phase2)') }}:
+      value: "UAT - Ph2"
+    ${{ if eq(parameters.environment, 'performance (phase2)') }}:
+      value: "Performance - Ph2"
+  - group: "${{variables.groupPrefix}} ${{variables.environmentTag}}"
+
+steps:
+  - task: PowerShell@2
+    displayName: "Add Build Tag"
+    inputs:
+      targetType: "inline"
+      script: |
+        Write-Host "##vso[build.addbuildtag]${{variables.environmentTag}}"
+
+  - task: replacetokens@3
+    displayName: "Replace tokens in **/*.env **/*.yml **/*default.conf **/*security.js"
+    inputs:
+      targetFiles: |
+        **/*.env
+        **/*.yml
+        **/*default.conf
+        **/*security.js
+
+  - task: replacetokens@3
+    displayName: "Replace tokens in **/*Dockerfile"
+    inputs:
+      targetFiles: "**/*Dockerfile"
+      tokenPrefix: "${"
+      tokenSuffix: "}"
+
+  - task: SonarQubePrepare@5
+    condition: and(succeeded(),eq(variables['TOKEN_SONARQUBE_ENABLED'], 'true'), or(eq(variables['Build.SourceBranchName'], 'develop'),eq(variables['Build.SourceBranchName'], 'dev-ph2')))
+    inputs:
+      SonarQube: 'SonarQube'
+      scannerMode: 'CLI'
+      configMode: 'manual'
+      cliProjectKey: '$(TOKEN_SONARQUBE_BE_PROJECT_KEY)'
+      cliSources: '.'
+      extraProperties: |
+        # Additional properties that will be passed to the scanner, 
+        # Put one key=value per line, example:
+        sonar.issue.ignore.multicriteria=e1
+        sonar.issue.ignore.multicriteria.e1.ruleKey=javascript:S1479
+        sonar.issue.ignore.multicriteria.e1.resourceKey=OneTeam360.Notification/api/controllers/NotificationController.js
+      
+  - task: DockerCompose@0
+    displayName: "Build docker images"
+    inputs:
+      containerregistrytype: "Azure Container Registry"
+      azureSubscription: "$(TOKEN_AZ_SUBSCRIPTION_NAME)"
+      azureContainerRegistry: '{"loginServer":"$(TOKEN_ACR_NAME).azurecr.io", "id" : "/subscriptions/$(TOKEN_AZ_SUBSCRIPTION_ID)/resourceGroups/$(TOKEN_AZ_RESOURCEGROUP)/providers/Microsoft.ContainerRegistry/registries/$(TOKEN_ACR_REGISTRY_NAME)"}'
+      dockerComposeFile: "docker-compose.yml"
+      projectName:
+      action: "Build services"
+      includeLatestTag: true
+
+  - task: DockerCompose@0
+    displayName: "Push docker images"
+    inputs:
+      containerregistrytype: "Azure Container Registry"
+      azureSubscription: "$(TOKEN_AZ_SUBSCRIPTION_NAME)"
+      azureContainerRegistry: '{"loginServer":"$(TOKEN_ACR_NAME).azurecr.io", "id" : "/subscriptions/$(TOKEN_AZ_SUBSCRIPTION_ID)/resourceGroups/$(TOKEN_AZ_RESOURCEGROUP)/providers/Microsoft.ContainerRegistry/registries/$(TOKEN_ACR_REGISTRY_NAME)"}'
+      dockerComposeFile: "docker-compose.yml"
+      projectName:
+      action: "Push services"
+      includeLatestTag: true
+
+  # - task: PowerShell@2
+  #   inputs:
+  #     targetType: 'inline'
+  #     script: |
+  #       # Remove docker ot360 images after pushing images to container registry  
+  #       docker rmi $(docker images -a -q "*azurecr.io/ot360*")
+
+  # - task: PowerShell@2
+  #   inputs:
+  #     targetType: 'inline'
+  #     script: |
+  #       # Remove dangling docker images after pushing images to container registry  
+  #       docker rmi $(docker images -qf 'dangling=true')
+  #     errorActionPreference: 'continue'
+
+  - powershell: |
+      $params = "$env:SONARQUBE_SCANNER_PARAMS" -replace '"sonar.branch.name":"[\w,/,-]*"\,?'
+      Write-Host "##vso[task.setvariable variable=SONARQUBE_SCANNER_PARAMS]$params"
+
+  - task: SonarQubeAnalyze@5
+    condition: and(succeeded(),eq(variables['TOKEN_SONARQUBE_ENABLED'], 'true'), or(eq(variables['Build.SourceBranchName'], 'develop'),eq(variables['Build.SourceBranchName'], 'dev-ph2')))
+
+  - task: SonarQubePublish@5
+    condition: and(succeeded(),eq(variables['TOKEN_SONARQUBE_ENABLED'], 'true'), or(eq(variables['Build.SourceBranchName'], 'develop'),eq(variables['Build.SourceBranchName'], 'dev-ph2')))
+    inputs:
+      pollingTimeoutSec: "300"
+
+  - task: PublishBuildArtifacts@1
+    displayName: "Publish Artifact: drop"
+    inputs:
+      PathtoPublish: "docker-compose-deployment.yml"

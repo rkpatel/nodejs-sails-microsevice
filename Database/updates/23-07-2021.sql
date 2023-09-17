@@ -1,0 +1,1 @@
+ALTER TABLE `job_type` ADD `color` VARCHAR(50) NOT NULL AFTER `status`;

@@ -1,0 +1,5 @@
+dump.rdb
+node_modules
+package-*.json
+OneTeam360.local.nginx
+/OneTeam360.Competition/--package.json

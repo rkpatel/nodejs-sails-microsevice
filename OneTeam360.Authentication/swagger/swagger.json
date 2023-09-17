@@ -1,0 +1,1606 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Swagger Json",
+    "description": "This is a generated swagger json for your sails project",
+    "termsOfService": "http://example.com/terms",
+    "contact": {
+      "name": "Theophilus Omoregbee",
+      "url": "http://github.com/theo4u",
+      "email": "theo4u@ymail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:1337/"
+    }
+  ],
+  "externalDocs": {
+    "url": "https://theoomoregbee.github.io/"
+  },
+  "tags": [
+    {
+      "name": "User"
+    },
+    {
+      "name": "Common"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "account": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/account-without-required-constraint"
+          },
+          {
+            "required": [
+              "name",
+              "email",
+              "address"
+            ]
+          }
+        ]
+      },
+      "account-without-required-constraint": {
+        "type": "object",
+        "description": "Sails ORM Model **Account**",
+        "properties": {
+          "account_id": {
+            "type": "integer",
+            "format": "int64",
+            "uniqueItems": true,
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          "account_guid": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "theme": {
+            "type": "string"
+          },
+          "onboard_status": {
+            "type": "string",
+            "enum": [
+              "Completed"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Inactive",
+              "Active",
+              "Cancelled",
+              "Payment Pending",
+              "Payment Declined",
+              "Cancel Requested"
+            ]
+          },
+          "created_by": {
+            "type": "number",
+            "format": "double"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Note Sails special attributes: autoCreatedAt"
+          },
+          "last_updated_by": {
+            "type": "number",
+            "format": "double"
+          },
+          "last_updated_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Note Sails special attributes: autoCreatedAt"
+          }
+        }
+      },
+      "accountconfiguration": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/accountconfiguration-without-required-constraint"
+          }
+        ]
+      },
+      "accountconfiguration-without-required-constraint": {
+        "type": "object",
+        "description": "Sails ORM Model **AccountConfiguration**",
+        "properties": {
+          "account_configuration_id": {
+            "type": "integer",
+            "format": "int64",
+            "uniqueItems": true,
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          "account_id": {
+            "description": "JSON dictionary representing the **account** instance or FK when creating / updating / not populated",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/account"
+              }
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "sequence": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "accountconfigurationdetail": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/accountconfigurationdetail-without-required-constraint"
+          }
+        ]
+      },
+      "accountconfigurationdetail-without-required-constraint": {
+        "type": "object",
+        "description": "Sails ORM Model **AccountConfigurationDetail**",
+        "properties": {
+          "account_configuration_detail_id": {
+            "type": "integer",
+            "format": "int64",
+            "uniqueItems": true,
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          "account_configuration_id": {
+            "description": "JSON dictionary representing the **accountconfiguration** instance or FK when creating / updating / not populated",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/accountconfiguration"
+              }
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "default_value": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "is_encrypted": {
+            "type": "number",
+            "format": "double"
+          },
+          "is_editable": {
+            "type": "number",
+            "format": "double"
+          },
+          "sequence": {
+            "type": "number",
+            "format": "double"
+          },
+          "last_updated_by": {
+            "type": "number",
+            "format": "double"
+          },
+          "last_updated_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Note Sails special attributes: autoCreatedAt"
+          }
+        }
+      },
+      "accountsubscription": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/accountsubscription-without-required-constraint"
+          }
+        ]
+      },
+      "accountsubscription-without-required-constraint": {
+        "type": "object",
+        "description": "Sails ORM Model **AccountSubscription**",
+        "properties": {
+          "account_subscription_id": {
+            "type": "integer",
+            "format": "int64",
+            "uniqueItems": true,
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          "account_id": {
+            "description": "JSON dictionary representing the **account** instance or FK when creating / updating / not populated",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/account"
+              }
+            ]
+          },
+          "expiry_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Note Sails special attributes: autoCreatedAt"
+          },
+          "subscription_status": {
+            "type": "string",
+            "enum": [
+              "Inactive",
+              "Active",
+              "Canceled"
+            ]
+          }
+        }
+      },
+      "accountusermapping": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/accountusermapping-without-required-constraint"
+          }
+        ]
+      },
+      "accountusermapping-without-required-constraint": {
+        "type": "object",
+        "description": "Sails ORM Model **AccountUserMapping**",
+        "properties": {
+          "account_user_id": {
+            "type": "integer",
+            "format": "int64",
+            "uniqueItems": true,
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          "account_id": {
+            "description": "JSON dictionary representing the **account** instance or FK when creating / updating / not populated",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/account"
+              }
+            ]
+          },
+          "user_id": {
+            "description": "JSON dictionary representing the **users** instance or FK when creating / updating / not populated",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/users"
+              }
+            ]
+          },
+          "account_owner": {
+            "type": "number",
+            "format": "double"
+          },
+          "last_updated_by": {
+            "type": "number",
+            "format": "double"
+          },
+          "last_updated_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Note Sails special attributes: autoCreatedAt"
+          }
+        }
+      },
+      "city": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/city-without-required-constraint"
+          }
+        ]
+      },
+      "city-without-required-constraint": {
+        "type": "object",
+        "description": "Sails ORM Model **City**",
+        "properties": {
+          "city_id": {
+            "type": "integer",
+            "format": "int64",
+            "uniqueItems": true,
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          "name": {
+            "type": "string"
+          },
+          "state_id": {
+            "type": "number",
+            "format": "double"
+          },
+          "status": {
+            "type": "string"
+          },
+          "created_by": {
+            "type": "number",
+            "format": "double"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Note Sails special attributes: autoCreatedAt"
+          },
+          "last_updated_by": {
+            "type": "number",
+            "format": "double"
+          },
+          "last_updated_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Note Sails special attributes: autoCreatedAt"
+          }
+        }
+      },
+      "country": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/country-without-required-constraint"
+          }
+        ]
+      },
+      "country-without-required-constraint": {
+        "type": "object",
+        "description": "Sails ORM Model **Country**",
+        "properties": {
+          "country_id": {
+            "type": "integer",
+            "format": "int64",
+            "uniqueItems": true,
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          "name": {
+            "type": "string"
+          },
+          "country_code": {
+            "type": "string"
+          },
+          "phone_code": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Inactive",
+              "Active"
+            ]
+          },
+          "created_by": {
+            "type": "number",
+            "format": "double"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Note Sails special attributes: autoCreatedAt"
+          },
+          "last_updated_by": {
+            "type": "number",
+            "format": "double"
+          },
+          "last_updated_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Note Sails special attributes: autoCreatedAt"
+          }
+        }
+      },
+      "empjobtype": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/empjobtype-without-required-constraint"
+          }
+        ]
+      },
+      "empjobtype-without-required-constraint": {
+        "type": "object",
+        "description": "Sails ORM Model **EmpJobType**",
+        "properties": {
+          "employee_job_type_id": {
+            "type": "integer",
+            "format": "int64",
+            "uniqueItems": true,
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          "employee_profile_id": {
+            "description": "JSON dictionary representing the **employeeprofile** instance or FK when creating / updating / not populated",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/employeeprofile"
+              }
+            ]
+          },
+          "job_type_id": {
+            "description": "JSON dictionary representing the **jobtype** instance or FK when creating / updating / not populated",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/jobtype"
+              }
+            ]
+          },
+          "created_by": {
+            "type": "number",
+            "format": "double"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Note Sails special attributes: autoCreatedAt"
+          }
+        }
+      },
+      "emplocation": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/emplocation-without-required-constraint"
+          }
+        ]
+      },
+      "emplocation-without-required-constraint": {
+        "type": "object",
+        "description": "Sails ORM Model **EmpLocation**",
+        "properties": {
+          "employee_location_id": {
+            "type": "integer",
+            "format": "int64",
+            "uniqueItems": true,
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          "employee_profile_id": {
+            "description": "JSON dictionary representing the **employeeprofile** instance or FK when creating / updating / not populated",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/employeeprofile"
+              }
+            ]
+          },
+          "location_id": {
+            "description": "JSON dictionary representing the **locations** instance or FK when creating / updating / not populated",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/locations"
+              }
+            ]
+          },
+          "created_by": {
+            "type": "number",
+            "format": "double"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Note Sails special attributes: autoCreatedAt"
+          }
+        }
+      },
+      "employeeprofile": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/employeeprofile-without-required-constraint"
+          }
+        ]
+      },
+      "employeeprofile-without-required-constraint": {
+        "type": "object",
+        "description": "Sails ORM Model **EmployeeProfile**",
+        "properties": {
+          "employee_profile_id": {
+            "type": "integer",
+            "format": "int64",
+            "uniqueItems": true,
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Inactive",
+              "Active"
+            ]
+          },
+          "user_id": {
+            "type": "number",
+            "format": "double"
+          },
+          "role_id": {
+            "description": "JSON dictionary representing the **role** instance or FK when creating / updating / not populated",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/role"
+              }
+            ]
+          },
+          "job_type_id": {
+            "description": "Array of **jobtype**'s or array of FK's when creating / updating / not populated",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/jobtype"
+            }
+          },
+          "location_id": {
+            "description": "Array of **locations**'s or array of FK's when creating / updating / not populated",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/locations"
+            }
+          }
+        }
+      },
+      "jobtype": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/jobtype-without-required-constraint"
+          }
+        ]
+      },
+      "jobtype-without-required-constraint": {
+        "type": "object",
+        "description": "Sails ORM Model **JobType**",
+        "properties": {
+          "job_type_id": {
+            "type": "integer",
+            "format": "int64",
+            "uniqueItems": true,
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          "color": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Inactive",
+              "Active"
+            ]
+          },
+          "created_by": {
+            "type": "number",
+            "format": "double"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Note Sails special attributes: autoCreatedAt"
+          },
+          "last_updated_by": {
+            "type": "number",
+            "format": "double"
+          },
+          "last_updated_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Note Sails special attributes: autoCreatedAt"
+          },
+          "jobType": {
+            "description": "Array of **employeeprofile**'s or array of FK's when creating / updating / not populated",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/employeeprofile"
+            }
+          }
+        }
+      },
+      "locations": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/locations-without-required-constraint"
+          }
+        ]
+      },
+      "locations-without-required-constraint": {
+        "type": "object",
+        "description": "Sails ORM Model **Locations**",
+        "properties": {
+          "location_id": {
+            "type": "integer",
+            "format": "int64",
+            "uniqueItems": true,
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          "parent_location_id": {
+            "type": "number",
+            "format": "double"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "address_1": {
+            "type": "string"
+          },
+          "address_2": {
+            "type": "string"
+          },
+          "city_id": {
+            "type": "number",
+            "format": "double"
+          },
+          "state_id": {
+            "type": "number",
+            "format": "double"
+          },
+          "country_id": {
+            "type": "number",
+            "format": "double"
+          },
+          "zip": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Inactive",
+              "Active"
+            ]
+          },
+          "created_by": {
+            "type": "number",
+            "format": "double"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Note Sails special attributes: autoCreatedAt"
+          },
+          "locations": {
+            "description": "Array of **employeeprofile**'s or array of FK's when creating / updating / not populated",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/employeeprofile"
+            }
+          },
+          "last_updated_by": {
+            "type": "number",
+            "format": "double"
+          },
+          "last_updated_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Note Sails special attributes: autoCreatedAt"
+          }
+        }
+      },
+      "permission": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/permission-without-required-constraint"
+          }
+        ]
+      },
+      "permission-without-required-constraint": {
+        "type": "object",
+        "description": "Sails ORM Model **Permission**",
+        "properties": {
+          "permission_id": {
+            "type": "integer",
+            "format": "int64",
+            "uniqueItems": true,
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          "permission_module_id": {
+            "description": "JSON dictionary representing the **permissionmodule** instance or FK when creating / updating / not populated",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/permissionmodule"
+              }
+            ]
+          },
+          "parent_permission_id": {
+            "type": "number",
+            "format": "double"
+          },
+          "name": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "sequence": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "permissionmodule": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/permissionmodule-without-required-constraint"
+          }
+        ]
+      },
+      "permissionmodule-without-required-constraint": {
+        "type": "object",
+        "description": "Sails ORM Model **PermissionModule**",
+        "properties": {
+          "permission_module_id": {
+            "type": "integer",
+            "format": "int64",
+            "uniqueItems": true,
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          "parent_permission_module_id": {
+            "type": "number",
+            "format": "double"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "sequence": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "role": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/role-without-required-constraint"
+          }
+        ]
+      },
+      "role-without-required-constraint": {
+        "type": "object",
+        "description": "Sails ORM Model **Role**",
+        "properties": {
+          "role_id": {
+            "type": "integer",
+            "format": "int64",
+            "uniqueItems": true,
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "dashboard": {
+            "type": "string",
+            "enum": [
+              "Manager",
+              "Employee"
+            ]
+          },
+          "is_active": {
+            "type": "boolean",
+            "default": true,
+            "example": true
+          },
+          "is_admin_role": {
+            "type": "boolean",
+            "default": false
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Inactive",
+              "Active"
+            ]
+          },
+          "created_by": {
+            "type": "number",
+            "format": "double"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Note Sails special attributes: autoCreatedAt"
+          },
+          "last_updated_by": {
+            "type": "number",
+            "format": "double"
+          },
+          "last_updated_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Note Sails special attributes: autoCreatedAt"
+          }
+        }
+      },
+      "rolepermission": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/rolepermission-without-required-constraint"
+          }
+        ]
+      },
+      "rolepermission-without-required-constraint": {
+        "type": "object",
+        "description": "Sails ORM Model **RolePermission**",
+        "properties": {
+          "role_permission_id": {
+            "type": "integer",
+            "format": "int64",
+            "uniqueItems": true,
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          "role_id": {
+            "description": "JSON dictionary representing the **role** instance or FK when creating / updating / not populated",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/role"
+              }
+            ]
+          },
+          "permission_id": {
+            "description": "JSON dictionary representing the **permission** instance or FK when creating / updating / not populated",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/permission"
+              }
+            ]
+          },
+          "created_by": {
+            "type": "number",
+            "format": "double"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Note Sails special attributes: autoCreatedAt"
+          }
+        }
+      },
+      "state": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/state-without-required-constraint"
+          }
+        ]
+      },
+      "state-without-required-constraint": {
+        "type": "object",
+        "description": "Sails ORM Model **State**",
+        "properties": {
+          "state_id": {
+            "type": "integer",
+            "format": "int64",
+            "uniqueItems": true,
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          "name": {
+            "type": "string"
+          },
+          "state_code": {
+            "type": "string"
+          },
+          "country_id": {
+            "description": "JSON dictionary representing the **country** instance or FK when creating / updating / not populated",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/country"
+              }
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Inactive",
+              "Active"
+            ]
+          },
+          "created_by": {
+            "type": "number",
+            "format": "double"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Note Sails special attributes: autoCreatedAt"
+          },
+          "last_updated_by": {
+            "type": "number",
+            "format": "double"
+          },
+          "last_updated_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Note Sails special attributes: autoCreatedAt"
+          }
+        }
+      },
+      "subscriptionplan": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/subscriptionplan-without-required-constraint"
+          }
+        ]
+      },
+      "subscriptionplan-without-required-constraint": {
+        "type": "object",
+        "description": "Sails ORM Model **SubscriptionPlan**",
+        "properties": {
+          "subscription_plan_id": {
+            "type": "integer",
+            "format": "int64",
+            "uniqueItems": true,
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "bill_interval": {
+            "type": "number",
+            "format": "double"
+          },
+          "min_price": {
+            "type": "number",
+            "format": "double"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "subscriptionplantier": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/subscriptionplantier-without-required-constraint"
+          }
+        ]
+      },
+      "subscriptionplantier-without-required-constraint": {
+        "type": "object",
+        "description": "Sails ORM Model **SubscriptionPlanTier**",
+        "properties": {
+          "subscription_plan_tier_id": {
+            "type": "integer",
+            "format": "int64",
+            "uniqueItems": true,
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          "subscription_plan_id": {
+            "description": "JSON dictionary representing the **subscriptionplan** instance or FK when creating / updating / not populated",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/subscriptionplan"
+              }
+            ]
+          },
+          "seats_from_range": {
+            "type": "string"
+          }
+        }
+      },
+      "systemlog": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/systemlog-without-required-constraint"
+          },
+          {
+            "required": [
+              "url",
+              "ip_address",
+              "error_code"
+            ]
+          }
+        ]
+      },
+      "systemlog-without-required-constraint": {
+        "type": "object",
+        "description": "Sails ORM Model **SystemLog**",
+        "properties": {
+          "system_log_id": {
+            "type": "integer",
+            "format": "int64",
+            "uniqueItems": true,
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          "user_id": {
+            "type": "number",
+            "format": "double"
+          },
+          "account_id": {
+            "type": "number",
+            "format": "double"
+          },
+          "url": {
+            "type": "string"
+          },
+          "ip_address": {
+            "type": "string"
+          },
+          "error_code": {
+            "type": "string"
+          },
+          "error_message": {
+            "type": "string"
+          },
+          "datetime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Note Sails special attributes: autoCreatedAt"
+          },
+          "stack_trace": {
+            "type": "string"
+          },
+          "useragent": {
+            "type": "string"
+          }
+        }
+      },
+      "userloginlog": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/userloginlog-without-required-constraint"
+          }
+        ]
+      },
+      "userloginlog-without-required-constraint": {
+        "type": "object",
+        "description": "Sails ORM Model **UserLoginLog**",
+        "properties": {
+          "login_log_id": {
+            "type": "integer",
+            "format": "int64",
+            "uniqueItems": true,
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          "user_id": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "login_date_time": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Note Sails special attributes: autoCreatedAt"
+          },
+          "thru_mobile": {
+            "type": "number",
+            "format": "double"
+          },
+          "device_id": {
+            "type": "string"
+          },
+          "device_os_name": {
+            "type": "string"
+          },
+          "device_info": {
+            "type": "string"
+          },
+          "device_os_version": {
+            "type": "string"
+          },
+          "app_version": {
+            "type": "string"
+          },
+          "ip_adress": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "login_error": {
+            "type": "string"
+          }
+        }
+      },
+      "users": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/users-without-required-constraint"
+          },
+          {
+            "required": [
+              "email",
+              "first_name",
+              "last_name",
+              "phone",
+              "date_of_birth"
+            ]
+          }
+        ]
+      },
+      "users-without-required-constraint": {
+        "type": "object",
+        "description": "Sails ORM Model **Users**",
+        "properties": {
+          "user_id": {
+            "type": "integer",
+            "format": "int64",
+            "uniqueItems": true,
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          "password": {
+            "type": "string"
+          },
+          "portal_access": {
+            "type": "string",
+            "enum": [
+              "admin_portal",
+              "customer_portal"
+            ]
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "uniqueItems": true
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "date_of_birth": {
+            "type": "string",
+            "format": "date"
+          },
+          "emergency_contact_name": {
+            "type": "string"
+          },
+          "emergency_contact_relation": {
+            "type": "string"
+          },
+          "emergency_contact_number": {
+            "type": "string"
+          },
+          "emergency_contact_address": {
+            "type": "string"
+          },
+          "emergency_contact_city_id": {
+            "description": "JSON dictionary representing the **city** instance or FK when creating / updating / not populated",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/city"
+              }
+            ]
+          },
+          "emergency_contact_state_id": {
+            "description": "JSON dictionary representing the **state** instance or FK when creating / updating / not populated",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/state"
+              }
+            ]
+          },
+          "emergency_contact_country_id": {
+            "description": "JSON dictionary representing the **country** instance or FK when creating / updating / not populated",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/country"
+              }
+            ]
+          },
+          "emergency_contact_zip": {
+            "type": "string"
+          },
+          "profile_picture_url": {
+            "type": "string"
+          },
+          "profile_picture_thumbnail_url": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Invited",
+              "Active"
+            ]
+          },
+          "reset_password_token": {
+            "type": "string"
+          },
+          "impersonation_token": {
+            "type": "string"
+          },
+          "created_by": {
+            "type": "number",
+            "format": "double"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Note Sails special attributes: autoCreatedAt"
+          },
+          "aboard_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Note Sails special attributes: autoCreatedAt"
+          },
+          "last_updated_by": {
+            "type": "number",
+            "format": "double"
+          },
+          "last_updated_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Note Sails special attributes: autoCreatedAt"
+          },
+          "primary_user": {
+            "type": "string",
+            "nullable": true,
+            "enum": [
+              "Yes",
+              "No"
+            ]
+          }
+        }
+      }
+    },
+    "parameters": {
+      "AttributeFilterParam": {
+        "in": "query",
+        "name": "_*_",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "To filter results based on a particular attribute, specify a query parameter with the same name as the attribute defined on your model. For instance, if our `Purchase` model has an `amount` attribute, we could send `GET /purchase?amount=99.99` to return a list of $99.99 purchases."
+      },
+      "WhereQueryParam": {
+        "in": "query",
+        "name": "where",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "Instead of filtering based on a specific attribute, you may instead choose to provide a `where` parameter with the WHERE piece of a [Waterline criteria](https://sailsjs.com/documentation/concepts/models-and-orm/query-language), _encoded as a JSON string_. This allows you to take advantage of `contains`, `startsWith`, and other sub-attribute criteria modifiers for more powerful `find()` queries.\n\ne.g. `?where={\"name\":{\"contains\":\"theodore\"}}`"
+      },
+      "LimitQueryParam": {
+        "in": "query",
+        "name": "limit",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "The maximum number of records to send back (useful for pagination). Defaults to 30."
+      },
+      "SkipQueryParam": {
+        "in": "query",
+        "name": "skip",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "The number of records to skip (useful for pagination)."
+      },
+      "SortQueryParam": {
+        "in": "query",
+        "name": "sort",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "The sort order. By default, returned records are sorted by primary key value in ascending order.\n\ne.g. `?sort=lastName%20ASC`"
+      }
+    }
+  },
+  "paths": {
+    "/login": {
+      "post": {
+        "summary": "/login",
+        "tags": [
+          "User"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The requested resource"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/change-password": {
+      "post": {
+        "summary": "/change-password",
+        "tags": [
+          "User"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The requested resource"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/create-password": {
+      "post": {
+        "summary": "/create-password",
+        "tags": [
+          "User"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The requested resource"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/forgot-password": {
+      "post": {
+        "summary": "/forgot-password",
+        "tags": [
+          "User"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The requested resource"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/reset-password": {
+      "post": {
+        "summary": "/reset-password",
+        "tags": [
+          "User"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The requested resource"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/system-log": {
+      "get": {
+        "summary": "/system-log",
+        "tags": [
+          "User"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The requested resource"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/profile-detail": {
+      "get": {
+        "summary": "/profile-detail",
+        "tags": [
+          "User"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The requested resource"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/sign-in-to-admin": {
+      "post": {
+        "summary": "/sign-in-to-admin",
+        "tags": [
+          "User"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The requested resource"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/sign-in-to-employee": {
+      "post": {
+        "summary": "/sign-in-to-employee",
+        "tags": [
+          "User"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The requested resource"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/sign-in-to-primaryuser": {
+      "post": {
+        "summary": "/sign-in-to-primaryuser",
+        "tags": [
+          "User"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The requested resource"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/swagger.json": {
+      "get": {
+        "summary": "/swagger.json",
+        "tags": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The requested resource"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/verifyToken": {
+      "get": {
+        "summary": "/verifyToken",
+        "tags": [
+          "Common"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The requested resource"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/refreshToken": {
+      "get": {
+        "summary": "/refreshToken",
+        "tags": [
+          "Common"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The requested resource"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/health-check": {
+      "get": {
+        "summary": "/health-check",
+        "tags": [
+          "Common"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The requested resource"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  }
+}
